@@ -15,6 +15,10 @@ public class State {
     transitions.put(variable, state);
   }
 
+  public void removerTransition(String variable) {
+    transitions.remove(variable);
+  }
+
   public String getName(){
     return this.name;
   }
