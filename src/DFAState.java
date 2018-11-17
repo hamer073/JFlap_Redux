@@ -1,17 +1,17 @@
-public class State {
+public class DFAState {
 
   private String name;
-  private Map<String, State> transitions;
+  private Map<String, DFAState> transitions;
 
-  public State(String name) {
+  public DFAState(String name) {
     this.name = name;
   }
 
-  public State transition(String variable) {
+  public DFAState transition(String variable) {
     return transitions.get(variable);
   }
 
-  public void addTransition(String variable, State state) {
+  public void addTransition(String variable, DFAState state) {
     transitions.put(variable, state);
   }
 

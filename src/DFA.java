@@ -2,9 +2,9 @@ import java.util.*;
 
 public class DFA {
 
-  private ArrayList<State> states;
-  private State startState;
-  private ArrayList<State> acceptStates;
+  private ArrayList<DFAState> states;
+  private DFAState startState;
+  private ArrayList<DFAState> acceptStates;
 
   public DFA() {
   }
@@ -14,7 +14,7 @@ public class DFA {
   }
 
   public void removeState(String name) {
-    for(State state : states) {
+    for(DFAState state : states) {
       if(state.getName().equals(name)){
         states.remove(state);
         break;
