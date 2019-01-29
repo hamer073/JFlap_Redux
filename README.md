@@ -9,3 +9,12 @@ You can find the processing editor and documentation at https://processing.org/.
 One of the big goals with this project is to improve on how JFlap handles NFA's.
 Ideally, want to convert an NFA to a DFA when testing input so that there aren't issues with the program generating hundreds of thousands of possible ways to pass through the NFA before deciding if it accepts or rejects.
 Would still want to have some sort of step through functionality that leaves the NFA as is
+
+# Usage
+When you start up the program it will default to the state mode. This mode lets you create states by left clicking and move states by clicking and dragging a state. The first state that you create will automatically be set to be the initial state. Right clicking on a state will toggle it between a final/accept and not final/accept state.
+To switch modes press the m key.
+The other mode is for creating a transition. To create a transition click and drag on one state to another in the transition state. You'll be prompted to enter a string to be the transition symbol. For now this must only be one character (the input box will not limit you) because when you run on an input the program will only look at one character at a time.
+To test an input press the r key and enter an input string. For now, the result of the run will be printed out to the console.
+
+# Bugs
+When you create a transition from the start state to any other the start state no longer is marked as the start state.
