@@ -1,7 +1,7 @@
 class DFAState {
   private float xPos;
   private float yPos;
-  HashMap<String, DFAState> transition = new HashMap<String, DFAState>();
+  HashMap<String, DFAState> transitions = new HashMap<String, DFAState>();
   private boolean isFinal = false;
   
   public DFAState(float x, float y) {
@@ -10,11 +10,11 @@ class DFAState {
   }
   
   public void addTransition(String symbol, DFAState endState) {
-    this.transition.put(symbol, endState);
+    this.transitions.put(symbol, endState);
   }
   
   public DFAState transition(char symbol) {
-    return this.transition.get(symbol);
+    return this.transitions.get(String.valueOf(symbol));
   }
   
   // Have the draw function here so the draw function in the main file looks a little better  

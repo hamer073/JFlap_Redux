@@ -30,17 +30,21 @@ DFAState onState() {
 
 boolean runDFA(String word) {
   DFAState currentState = this.startState;
-  char[] brokenWord = word.toCharArray();
-  for(char character :  brokenWord) {
-    println("The current character: " + character);
+  
+  
+  char[] charArray = word.toCharArray();
+  for(char letter : charArray) {
     if(currentState == null) {
       return false;
     }
-    currentState = currentState.transition(character);
+    DFAState nextState = currentState.transition(letter);
+    if(nextState == null) {
+      return false;
+    }
+    currentState = nextState;    
   }
-  
+    
   boolean result = currentState.isFinal();
-  print(result);
   return result;
 }
 
@@ -150,6 +154,6 @@ void keyPressed() {
     mode = !mode;
   } else if(key == 'r') {
     String word = showInputDialog("Enter word to test");
-    runDFA(word);
+    println("The result is: "+ runDFA(word));
   }
 }
