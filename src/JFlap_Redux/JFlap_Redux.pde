@@ -3,6 +3,8 @@ import static javax.swing.JOptionPane.*;
 ArrayList<DFAState> states = new ArrayList<DFAState>(); 
 ArrayList<Transition> transitions = new ArrayList<Transition>();
 DFAState dragState;
+DFAState transitionStartState;
+DFAState transitionEndState;
 DFAState startState;
 
 // we're just going to store the mode as a boolean
@@ -27,7 +29,6 @@ DFAState onState() {
 }
 
 boolean runDFA(String word) {
-  println("What the program thinks the start state is: " + this.startState);
   DFAState currentState = this.startState;
   char[] brokenWord = word.toCharArray();
   for(char character :  brokenWord) {
@@ -37,9 +38,8 @@ boolean runDFA(String word) {
     }
     currentState = currentState.transition(character);
   }
-  boolean result;
   
-  result = currentState.isFinal();
+  boolean result = currentState.isFinal();
   print(result);
   return result;
 }
@@ -112,10 +112,10 @@ void mousePressed() {
   if(mode){
     dragState = onState();
   } else {
-    startState = onState();
-    if(startState != null) {
-      newTransitionStartX = startState.getX();
-      newTransitionStartY = startState.getY();
+    transitionStartState = onState();
+    if(transitionStartState != null) {
+      newTransitionStartX = transitionStartState.getX();
+      newTransitionStartY = transitionStartState.getY();
     }
   }
 }
@@ -124,18 +124,17 @@ void mouseReleased() {
   if(mode) {
     dragState = null;
   } else {
-    DFAState endState = onState();
-    if(endState != null) {
-      // Need to open a dialog here and get the symbol from the user
+    DFAState transitionEndState = onState();
+    if(transitionStartState != null && transitionEndState != null) {
       String symbol = showInputDialog("Enter Symbol");
       if(symbol != null) {
-        transitions.add(new Transition(symbol, startState, endState));
-        startState.addTransition(symbol, endState);
+        transitions.add(new Transition(symbol, transitionStartState, transitionEndState));
+        transitionStartState.addTransition(symbol, transitionEndState);
       }
     }
     newTransitionStartX = -100;
     newTransitionStartY = -100;
-    startState = null;
+    transitionStartState = null;
   }
 }
 
