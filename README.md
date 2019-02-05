@@ -16,5 +16,12 @@ To switch modes press the m key.
 The other mode is for creating a transition. To create a transition click and drag on one state to another in the transition state. You'll be prompted to enter a string to be the transition symbol. For now this must only be one character (the input box will not limit you) because when you run on an input the program will only look at one character at a time.
 To test an input press the r key and enter an input string. For now, the result of the run will be printed out to the console.
 
-# Bugs
-When you create a transition from the start state to any other the start state no longer is marked as the start state.
+# Todo
+Add better styling to the window
+* Have a better indicator of which state is the start states
+* Have a better indicator of which state(s) are end states
+* Have some indication of which direction a transition is going
+* Likely use a different background color than just black with white states
+
+# Known Bugs
+None at the moment!
